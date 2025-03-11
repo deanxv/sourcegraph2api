@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  sourcegraph2api:
+    image: deanxv/sourcegraph2api:latest
+    container_name: sourcegraph2api
+    restart: always
+    ports:
+      - "7033:7033"
+    volumes:
+      - ./data:/app/sourcegraph2api/data
+    environment:
+      - MYSQL_DSN=hix-ai-2-api:123456@tcp(host:3306)/hix_ai_2_api?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai  # 可修改此行 SQL连接信息
+      - TZ=Asia/Shanghai
+
+  db:
+    image: mysql:8.2.0
+    restart: always
+    container_name: mysql
+    volumes:
+      - ./data/mysql:/var/lib/mysql  # 挂载目录，持久化存储
+    ports:
+      - '3306:3306'
+    environment:
+      TZ: Asia/Shanghai   # 可修改默认时区
+      MYSQL_ROOT_PASSWORD: 'root@123456' # 可修改此行 root用户名 密码
+      MYSQL_USER: hix-ai-2-api   # 可修改初始化专用用户用户名
+      MYSQL_PASSWORD: '123456'    # 可修改初始化专用用户密码
+      MYSQL_DATABASE: hix_ai_2_api   # 可修改初始化专用数据库
