@@ -88,7 +88,7 @@ func handleNonStreamRequest(c *gin.Context, client cycletls.CycleTLS, openAIReq 
 		thinkStartType := new(bool) // 初始值为false
 		for response := range sseChan {
 			if response.Done {
-				logger.Warnf(ctx, response.Data)
+				logger.Debugf(ctx, response.Data)
 				return
 			}
 
@@ -318,7 +318,7 @@ func handleStreamRequest(c *gin.Context, client cycletls.CycleTLS, openAIReq mod
 				}
 
 				if response.Done {
-					logger.Warnf(ctx, response.Data)
+					logger.Debugf(ctx, response.Data)
 					return false
 				}
 
