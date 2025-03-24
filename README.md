@@ -17,7 +17,6 @@ _觉得有点意思的话 别忘了点个 ⭐_
 
 </div>
 
-
 ## 功能
 
 - [x] 支持对话接口(流式/非流式)(`/chat/completions`),详情查看[支持模型](#支持模型)
@@ -94,7 +93,8 @@ deanxv/sourcegraph2api
 
 其中`API_SECRET`、`SG_COOKIE`修改为自己的。
 
-如果上面的镜像无法拉取,可以尝试使用 GitHub 的 Docker 镜像,将上面的`deanxv/sourcegraph2api`替换为`ghcr.io/deanxv/sourcegraph2api`即可。
+如果上面的镜像无法拉取,可以尝试使用 GitHub 的 Docker 镜像,将上面的`deanxv/sourcegraph2api`替换为
+`ghcr.io/deanxv/sourcegraph2api`即可。
 
 ### 部署到第三方平台
 
@@ -144,11 +144,10 @@ Render 可以直接部署 docker 镜像,不需要 fork 仓库：[Render](https:/
 2. `DEBUG=true`  [可选]DEBUG模式,可打印更多信息[true:打开、false:关闭]
 3. `API_SECRET=123456`  [可选]接口密钥-修改此行为请求头(Authorization)校验的值(同API-KEY)(多个请以,分隔)
 4. `SG_COOKIE=******`  cookie (多个请以,分隔)
-6. `REQUEST_RATE_LIMIT=60`  [可选]每分钟下的单ip请求速率限制,默认:60次/min
-7. `PROXY_URL=http://127.0.0.1:10801`  [可选]代理
-11. `ROUTE_PREFIX=hf`  [可选]路由前缀,默认为空,添加该变量后的接口示例:`/hf/v1/chat/completions`
-12. `RATE_LIMIT_COOKIE_LOCK_DURATION=600`  [可选]到达速率限制的cookie禁用时间,默认为60s
-
+5. `REQUEST_RATE_LIMIT=60`  [可选]每分钟下的单ip请求速率限制,默认:60次/min
+6. `PROXY_URL=http://127.0.0.1:10801`  [可选]代理
+7. `ROUTE_PREFIX=hf`  [可选]路由前缀,默认为空,添加该变量后的接口示例:`/hf/v1/chat/completions`
+8. `RATE_LIMIT_COOKIE_LOCK_DURATION=600`  [可选]到达速率限制的cookie禁用时间,默认为60s
 
 ### cookie获取方式
 
@@ -164,25 +163,24 @@ Render 可以直接部署 docker 镜像,不需要 fork 仓库：[Render](https:/
 
 略
 
-
 ## 支持模型
 
 当前免费用户每月**200**次
 
-| 模型名称                     | 类型    |
-|--------------------------|-------|
-| claude-3-5-sonnet-latest | 🆓免费  |
-| claude-3-7-sonnet-latest | 💎PRO |
-| gpt-4o                   | 💎PRO |
-| o3-mini-medium           | 🆓免费  |
-| o1                       | 💎PRO |
-| gemini-1.5-pro           | 🆓免费  |
-| gemini-2.0-pro-exp-02-05 | 💎PRO |
-| claude-3-5-haiku-latest  | 🆓免费  |
-| gemini-2.0-flash-exp     | 🆓免费  |
-| gemini-2.0-flash-lite    | 🆓免费  |
-| gpt-4o-mini              | 🆓免费  |
-
+| 模型名称                                | 类型    |
+|-------------------------------------|-------|
+| claude-3-7-sonnet-latest            | 🆓免费  |
+| claude-3-7-sonnet-extended-thinking | 💎PRO |
+| claude-3-5-sonnet-latest            | 🆓免费  |
+| gpt-4o                              | 💎PRO |
+| o3-mini-medium                      | 🆓免费  |
+| o1                                  | 💎PRO |
+| gemini-1.5-pro                      | 🆓免费  |
+| gemini-2.0-pro-exp-02-05            | 💎PRO |
+| claude-3-5-haiku-latest             | 🆓免费  |
+| gemini-2.0-flash-exp                | 🆓免费  |
+| gemini-2.0-flash-lite               | 🆓免费  |
+| gpt-4o-mini                         | 🆓免费  |
 
 ## 报错排查
 

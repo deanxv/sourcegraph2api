@@ -470,25 +470,25 @@ func processNoStreamData(c *gin.Context, data string, responseId, model string, 
 
 }
 
-//func OpenaiModels(c *gin.Context) {
-//	var modelsResp []string
-//
-//	modelsResp = common.GetHixModelList()
-//
-//	var openaiModelListResponse model.OpenaiModelListResponse
-//	var openaiModelResponse []model.OpenaiModelResponse
-//	openaiModelListResponse.Object = "list"
-//
-//	for _, modelResp := range modelsResp {
-//		openaiModelResponse = append(openaiModelResponse, model.OpenaiModelResponse{
-//			ID:     modelResp,
-//			Object: "model",
-//		})
-//	}
-//	openaiModelListResponse.Data = openaiModelResponse
-//	c.JSON(http.StatusOK, openaiModelListResponse)
-//	return
-//}
+func OpenaiModels(c *gin.Context) {
+	var modelsResp []string
+
+	modelsResp = common.GetSGModelList()
+
+	var openaiModelListResponse model.OpenaiModelListResponse
+	var openaiModelResponse []model.OpenaiModelResponse
+	openaiModelListResponse.Object = "list"
+
+	for _, modelResp := range modelsResp {
+		openaiModelResponse = append(openaiModelResponse, model.OpenaiModelResponse{
+			ID:     modelResp,
+			Object: "model",
+		})
+	}
+	openaiModelListResponse.Data = openaiModelResponse
+	c.JSON(http.StatusOK, openaiModelListResponse)
+	return
+}
 
 func safeClose(client cycletls.CycleTLS) {
 	if client.ReqChan != nil {
