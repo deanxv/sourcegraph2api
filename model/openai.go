@@ -65,6 +65,36 @@ func (r *OpenAIChatCompletionRequest) SystemMessagesProcess() {
 	}
 }
 
+func (r *OpenAIChatCompletionRequest) RemoveEmptyContentMessages() *OpenAIChatCompletionRequest {
+	if r == nil || len(r.Messages) == 0 {
+		return r
+	}
+
+	var filteredMessages []OpenAIChatMessage
+	for _, msg := range r.Messages {
+		// Check if content is nil
+		if msg.Content == nil {
+			continue
+		}
+
+		// Check if content is an empty string
+		if strContent, ok := msg.Content.(string); ok && strContent == "" {
+			continue
+		}
+
+		// Check if content is an empty slice
+		if sliceContent, ok := msg.Content.([]interface{}); ok && len(sliceContent) == 0 {
+			continue
+		}
+
+		// If we get here, the content is not empty
+		filteredMessages = append(filteredMessages, msg)
+	}
+
+	r.Messages = filteredMessages
+	return r
+}
+
 func (r *OpenAIChatCompletionRequest) FilterUserMessage() {
 	if r.Messages == nil {
 		return

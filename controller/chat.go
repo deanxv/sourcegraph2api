@@ -45,6 +45,8 @@ func ChatForOpenAI(c *gin.Context) {
 		return
 	}
 
+	openAIReq.RemoveEmptyContentMessages()
+
 	if openAIReq.Stream {
 		handleStreamRequest(c, client, openAIReq)
 	} else {
