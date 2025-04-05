@@ -44,6 +44,27 @@ func ChatForOpenAI(c *gin.Context) {
 		})
 		return
 	}
+	modelInfo, b := common.GetSGModelInfo(openAIReq.Model)
+	if !b {
+		c.JSON(http.StatusBadRequest, model.OpenAIErrorResponse{
+			OpenAIError: model.OpenAIError{
+				Message: fmt.Sprintf("Model %s not supported", openAIReq.Model),
+				Type:    "invalid_request_error",
+				Code:    "invalid_model",
+			},
+		})
+		return
+	}
+	if openAIReq.MaxTokens > modelInfo.MaxTokens {
+		c.JSON(http.StatusBadRequest, model.OpenAIErrorResponse{
+			OpenAIError: model.OpenAIError{
+				Message: fmt.Sprintf("Max tokens %d exceeds limit %d", openAIReq.MaxTokens, modelInfo.MaxTokens),
+				Type:    "invalid_request_error",
+				Code:    "invalid_max_tokens",
+			},
+		})
+		return
+	}
 
 	openAIReq.RemoveEmptyContentMessages()
 
@@ -88,6 +109,7 @@ func handleNonStreamRequest(c *gin.Context, client cycletls.CycleTLS, openAIReq 
 		var assistantMsgContent string
 		var shouldContinue bool
 		thinkStartType := new(bool) // 初始值为false
+
 		for response := range sseChan {
 			if response.Done {
 				logger.Debugf(ctx, response.Data)
@@ -190,7 +212,7 @@ func createRequestBody(c *gin.Context, req *model.OpenAIChatCompletionRequest) (
 		"model": modelInfo.ModelRef,
 		//"stream":            req.Stream,
 		"messages":          messages,
-		"maxTokensToSample": 4000,
+		"maxTokensToSample": req.MaxTokens,
 		"temperature":       0.2,
 		"topP":              -1,
 		"topK":              -1,
