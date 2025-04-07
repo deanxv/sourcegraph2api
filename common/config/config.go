@@ -16,6 +16,7 @@ var SGCookie = os.Getenv("SG_COOKIE")
 var IpBlackList = strings.Split(os.Getenv("IP_BLACK_LIST"), ",")
 var AutoDelChat = env.Int("AUTO_DEL_CHAT", 0)
 var ProxyUrl = env.String("PROXY_URL", "")
+var UserAgent = env.String("USER_AGENT", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome")
 
 // 隐藏思考过程
 var ReasoningHide = env.Int("REASONING_HIDE", 0)

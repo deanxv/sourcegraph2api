@@ -27,7 +27,7 @@ func MakeStreamChatRequest(c *gin.Context, client cycletls.CycleTLS, jsonData []
 			"Referer":          baseURL + `/.assets/_sk/_app/immutable/workers/agent.worker-5ySyKmZ8.js`,
 			"Cookie":           cookie,
 			"x-requested-with": "Sourcegraph",
-			"User-Agent":       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome",
+			"User-Agent":       config.UserAgent,
 		},
 	}
 
