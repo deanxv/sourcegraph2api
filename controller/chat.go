@@ -217,7 +217,7 @@ func createRequestBody(c *gin.Context, req *model.OpenAIChatCompletionRequest) (
 		//"stream":            req.Stream,
 		"messages":          messages,
 		"maxTokensToSample": req.MaxTokens,
-		"temperature":       0.2,
+		"temperature":       req.Temperature,
 		"topP":              -1,
 		"topK":              -1,
 	}
@@ -462,13 +462,13 @@ func processNoStreamData(c *gin.Context, data string, responseId, model string, 
 	data = strings.TrimSpace(data)
 	data = strings.TrimPrefix(data, "data: ")
 
-	if data == `{"stopReason":"end_turn"}` {
+	if data == `{"stopReason":"stop"}` {
 		return "", false
 	}
 
-	if !strings.HasPrefix(data, "{\"deltaText\":") {
-		return "", true
-	}
+	//if !strings.HasPrefix(data, "{\"deltaText\":") {
+	//	return "", true
+	//}
 
 	var event map[string]interface{}
 	if err := json.Unmarshal([]byte(data), &event); err != nil {
@@ -494,7 +494,7 @@ func processNoStreamData(c *gin.Context, data string, responseId, model string, 
 	//	return delta, true
 	//}
 
-	return "", true
+	return "", false
 
 }
 

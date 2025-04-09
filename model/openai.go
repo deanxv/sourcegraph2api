@@ -6,10 +6,11 @@ import (
 )
 
 type OpenAIChatCompletionRequest struct {
-	Model     string              `json:"model"`
-	Stream    bool                `json:"stream"`
-	Messages  []OpenAIChatMessage `json:"messages"`
-	MaxTokens int                 `json:"max_tokens"`
+	Model       string              `json:"model"`
+	Stream      bool                `json:"stream"`
+	Messages    []OpenAIChatMessage `json:"messages"`
+	MaxTokens   int                 `json:"max_tokens"`
+	Temperature float64             `json:"temperature"`
 }
 
 type OpenAIChatCompletionExtraRequest struct {
