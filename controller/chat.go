@@ -109,8 +109,21 @@ func handleNonStreamRequest(c *gin.Context, client cycletls.CycleTLS, openAIReq 
 		var assistantMsgContent string
 		var shouldContinue bool
 		thinkStartType := new(bool) // 初始值为false
-
+	SSELoop:
 		for response := range sseChan {
+
+			if response.Status == 400 {
+				isRateLimit = true
+				logger.Errorf(ctx, fmt.Sprintf("No permission to call this model:%s", openAIReq.Model))
+				break SSELoop // 使用 label 跳出 SSE 循环
+			}
+			if response.Status == 429 {
+				isRateLimit = true
+				logger.Warnf(ctx, "Cookie rate limited, switching to next cookie, attempt %d/%d, COOKIE:%s", attempt+1, maxRetries, cookie)
+				config.AddRateLimitCookie(cookie, time.Now().Add(time.Duration(config.RateLimitCookieLockDuration)*time.Second))
+				break SSELoop // 使用 label 跳出 SSE 循环
+			}
+
 			if response.Done {
 				logger.Debugf(ctx, response.Data)
 				return
@@ -132,7 +145,7 @@ func handleNonStreamRequest(c *gin.Context, client cycletls.CycleTLS, openAIReq 
 				logger.Warnf(ctx, "Cookie Not Login, switching to next cookie, attempt %d/%d, COOKIE:%s", attempt+1, maxRetries, cookie)
 				// 删除cookie
 				//config.RemoveCookie(cookie)
-				break
+				break SSELoop
 			}
 
 			streamDelta, streamShouldContinue := processNoStreamData(c, data, responseId, openAIReq.Model, jsonData, thinkStartType)
@@ -342,6 +355,12 @@ func handleStreamRequest(c *gin.Context, client cycletls.CycleTLS, openAIReq mod
 				if response.Status == 400 {
 					isRateLimit = true
 					logger.Errorf(ctx, fmt.Sprintf("No permission to call this model:%s", openAIReq.Model))
+					break SSELoop // 使用 label 跳出 SSE 循环
+				}
+				if response.Status == 429 {
+					isRateLimit = true
+					logger.Warnf(ctx, "Cookie rate limited, switching to next cookie, attempt %d/%d, COOKIE:%s", attempt+1, maxRetries, cookie)
+					config.AddRateLimitCookie(cookie, time.Now().Add(time.Duration(config.RateLimitCookieLockDuration)*time.Second))
 					break SSELoop // 使用 label 跳出 SSE 循环
 				}
 

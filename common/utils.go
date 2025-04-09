@@ -175,7 +175,9 @@ func IsCloudflareChallenge(data string) bool {
 }
 
 func IsRateLimit(data string) bool {
-	if strings.HasPrefix(data, `{"error":"OpenAI (Sourcegraph Cody Gateway): unexpected status code 429: you have exceeded the concurrency limit of 3 requests for \"chat_completions\". Retry after`) {
+	if strings.HasPrefix(data, `{"error":"OpenAI (Sourcegraph Cody Gateway): unexpected status code 429: you have exceeded the concurrency limit of 3 requests for \"chat_completions\". Retry after`) ||
+		strings.HasPrefix(data, `{"error":"Anthropic (Sourcegraph Cody Gateway): unexpected status code 429: you have exceeded the concurrency limit of 3 requests for \"chat_completions\". Retry after`) ||
+		strings.HasPrefix(data, `{"error":"OpenAI (Sourcegraph Cody Gateway): unexpected status code 429: you have exceeded the concurrency limit of 3 requests for \"chat_completions\". Retry after`) {
 		return true
 	}
 
