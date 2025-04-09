@@ -79,9 +79,9 @@ func InitSGCookies() {
 
 		for _, cookie := range strings.Split(cookieStr, ",") {
 			// 如果 cookie 不包含 "session_id="，则添加前缀
-			if !strings.Contains(cookie, "sgs=") {
-				cookie = "sgs=" + cookie
-			}
+			//if !strings.Contains(cookie, "sgs=") {
+			//	cookie = "sgs=" + cookie
+			//}
 			SGCookies = append(SGCookies, cookie)
 		}
 	}

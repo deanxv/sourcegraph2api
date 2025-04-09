@@ -152,11 +152,8 @@ Render 可以直接部署 docker 镜像,不需要 fork 仓库：[Render](https:/
 
 ### cookie获取方式
 
-1. 打开[sourcegraph](https://sourcegraph.com/cody/chat)。
-1. 打开**F12**开发者工具。
-2. 发起对话。
-3. 右侧开发者工具-应用，左边选择Cookie->https://sourcegraph.com。
-4. 右侧搜索sgs，复制sgs的值所需cookie值。
+1. 打开[sourcegraph](https://sourcegraph.com/users/gqknwpwp-oodtk/settings/tokens)。
+2. 点击`Generate New token`获得的`Access Token`即所需cookie值,即环境变量`SG_COOKIE`。
 
 <span><img src="docs/img.png" width="800"/></span>
 

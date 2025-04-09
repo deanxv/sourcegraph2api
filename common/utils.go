@@ -2,11 +2,13 @@ package common
 
 import (
 	"crypto/md5"
+	cryptorand "crypto/rand"
 	"crypto/sha1"
 	"crypto/sha256"
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
+
 	"github.com/google/uuid"
 	jsoniter "github.com/json-iterator/go"
 	_ "github.com/pkoukk/tiktoken-go"
@@ -212,4 +214,27 @@ func StringToSHA1(str string) string {
 func StringToSHA256(str string) string {
 	hash := sha256.Sum256([]byte(str))
 	return hex.EncodeToString(hash[:])
+}
+
+// GenerateTraceParent 生成 transparent
+func GenerateTraceParent() (string, error) {
+	// 生成 16 字节的 trace ID
+	traceID := make([]byte, 16)
+	_, err := cryptorand.Read(traceID)
+	if err != nil {
+		return "", fmt.Errorf("failed to generate trace ID: %w", err)
+	}
+
+	// 生成 8 字节的 parent ID
+	parentID := make([]byte, 8)
+	_, err = cryptorand.Read(parentID)
+	if err != nil {
+		return "", fmt.Errorf("failed to generate parent ID: %w", err)
+	}
+
+	// 格式: version-traceid-parentid-flags
+	// 00 是版本，01 是标志位（表示采样）
+	return fmt.Sprintf("00-%s-%s-01",
+		hex.EncodeToString(traceID),
+		hex.EncodeToString(parentID)), nil
 }
