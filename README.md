@@ -156,7 +156,7 @@ Render 可以直接部署 docker 镜像,不需要 fork 仓库：[Render](https:/
 
 2. 点击右上角个人中心-`Settings`
 
-    <span><img src="docs/img2.png" width="800"/></span>
+    <span><img src="docs/img4.png" width="800"/></span>
 
 3. 点击左侧`Access tokens`,右上角`Generate New token`获得的`Access Token`即所需cookie值,即环境变量`SG_COOKIE`。
 
