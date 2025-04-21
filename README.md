@@ -145,7 +145,8 @@ Render 可以直接部署 docker 镜像,不需要 fork 仓库：[Render](https:/
 3. `API_SECRET=123456`  [可选]接口密钥-修改此行为请求头(Authorization)校验的值(同API-KEY)(多个请以,分隔)
 4. `SG_COOKIE=******`  cookie (多个请以,分隔)
 5. `REQUEST_RATE_LIMIT=60`  [可选]每分钟下的单ip请求速率限制,默认:60次/min
-6. `USER_AGENT=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome`  [可选]请求标识,用自己的(可能)防封,默认使用作者的。
+6. `USER_AGENT=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome`  [可选]
+   请求标识,用自己的(可能)防封,默认使用作者的。
 7. `PROXY_URL=http://127.0.0.1:10801`  [可选]代理
 8. `ROUTE_PREFIX=hf`  [可选]路由前缀,默认为空,添加该变量后的接口示例:`/hf/v1/chat/completions`
 9. `RATE_LIMIT_COOKIE_LOCK_DURATION=600`  [可选]到达速率限制的cookie禁用时间,默认为60s
@@ -156,11 +157,11 @@ Render 可以直接部署 docker 镜像,不需要 fork 仓库：[Render](https:/
 
 2. 点击右上角个人中心-`Settings`
 
-    <span><img src="docs/img4.png" width="800"/></span>
+   <span><img src="docs/img4.png" width="800"/></span>
 
 3. 点击左侧`Access tokens`,右上角`Generate New token`获得的`Access Token`即所需cookie值,即环境变量`SG_COOKIE`。
 
-    <span><img src="docs/img.png" width="800"/></span>
+   <span><img src="docs/img.png" width="800"/></span>
 
 ## 进阶配置
 
@@ -172,18 +173,21 @@ Render 可以直接部署 docker 镜像,不需要 fork 仓库：[Render](https:/
 
 | 模型名称                                | 类型    |
 |-------------------------------------|-------|
-| claude-3-7-sonnet-latest            | 🆓免费  |
+| o4-mini                             | 🆓免费  |
+| claude-3-7-sonnet                   | 🆓免费  |
 | claude-3-7-sonnet-extended-thinking | 💎PRO |
 | claude-3-5-sonnet-latest            | 🆓免费  |
 | gpt-4o                              | 💎PRO |
-| o3-mini-medium                      | 🆓免费  |
-| o1                                  | 💎PRO |
+| gpt-4.1                             | 💎PRO |
+| o3                                  | 💎PRO |
 | gemini-1.5-pro                      | 🆓免费  |
-| gemini-2.0-pro-exp-02-05            | 💎PRO |
+| gemini-2.5-pro-preview-03-25        | 💎PRO |
 | claude-3-5-haiku-latest             | 🆓免费  |
 | gemini-2.0-flash-exp                | 🆓免费  |
 | gemini-2.0-flash-lite               | 🆓免费  |
 | gpt-4o-mini                         | 🆓免费  |
+| gpt-4.1-mini                        | 🆓免费  |
+| gpt-4.1-nano                        | 🆓免费  |
 
 ## 报错排查
 

@@ -222,7 +222,7 @@ func createRequestBody(c *gin.Context, req *model.OpenAIChatCompletionRequest) (
 		return nil, fmt.Errorf("model %s not found", req.Model)
 	}
 	if req.MaxTokens <= 1 {
-		req.MaxTokens = 8000
+		req.MaxTokens = 4000
 	}
 
 	requestBody := map[string]interface{}{
