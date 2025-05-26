@@ -174,20 +174,42 @@ Render 可以直接部署 docker 镜像,不需要 fork 仓库：[Render](https:/
 | 模型名称                                | 类型    |
 |-------------------------------------|-------|
 | o4-mini                             | 🆓免费  |
-| claude-3-7-sonnet                   | 🆓免费  |
-| claude-3-7-sonnet-extended-thinking | 💎PRO |
+| claude-sonnet-4-latest              | 🆓免费  |
+| claude-3-7-sonnet-latest            | 🆓免费  |
 | claude-3-5-sonnet-latest            | 🆓免费  |
-| gpt-4o                              | 💎PRO |
-| gpt-4.1                             | 💎PRO |
-| o3                                  | 💎PRO |
-| gemini-1.5-pro                      | 🆓免费  |
-| gemini-2.5-pro-preview-03-25        | 💎PRO |
+| claude-3-opus                       | 🆓免费  |
 | claude-3-5-haiku-latest             | 🆓免费  |
+| claude-3-haiku                      | 🆓免费  |
+| claude-3.5-sonnet                   | 🆓免费  |
+| claude-3-5-sonnet-20240620          | 🆓免费  |
+| claude-3-sonnet                     | 🆓免费  |
+| claude-2.1                          | 🆓免费  |
+| claude-2.0                          | 🆓免费  |
+| deepseek-v3                         | 🆓免费  |
+| gemini-1.5-pro                      | 🆓免费  |
+| gemini-1.5-pro-002                  | 🆓免费  |
 | gemini-2.0-flash-exp                | 🆓免费  |
+| gemini-2.0-flash                    | 🆓免费  |
+| gemini-2.5-flash-preview-04-17      | 🆓免费  |
 | gemini-2.0-flash-lite               | 🆓免费  |
+| gemini-2.0-pro-exp-02-05            | 🆓免费  |
+| gemini-1.5-flash                    | 🆓免费  |
+| gemini-1.5-flash-002                | 🆓免费  |
+| mixtral-8x7b-instruct               | 🆓免费  |
+| mixtral-8x22b-instruct              | 🆓免费  |
 | gpt-4o-mini                         | 🆓免费  |
 | gpt-4.1-mini                        | 🆓免费  |
 | gpt-4.1-nano                        | 🆓免费  |
+| o3-mini-medium                      | 🆓免费  |
+| o1                                  | 🆓免费  |
+| gpt-4-turbo                         | 🆓免费  |
+| gpt-3.5-turbo                       | 🆓免费  |
+| claude-sonnet-4-thinking-latest     | 💎PRO |
+| claude-3-7-sonnet-extended-thinking | 💎PRO |
+| gpt-4o                              | 💎PRO |
+| gpt-4.1                             | 💎PRO |
+| o3                                  | 💎PRO |
+| gemini-2.5-pro-preview-03-25        | 💎PRO |
 
 ## 报错排查
 
